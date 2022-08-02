@@ -2,6 +2,7 @@ package com.blogpessoal.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -24,8 +27,9 @@ public class Tema {
 	@Size(min=3,max=255,message="O atributo descrição deve ter entre 3 e 255 caracteres")
 	private String descricao;
 	
-	//@OneToMany(mappedBy = "tema")  // nome do objeto tema na classe postagens
-	//private List<Postagem> postagens;
+	@OneToMany(mappedBy="tema",cascade=CascadeType.REMOVE)
+	@JsonIgnoreProperties
+	private List<Postagem> postagem;
 
 	public long getId() {
 		return id;
