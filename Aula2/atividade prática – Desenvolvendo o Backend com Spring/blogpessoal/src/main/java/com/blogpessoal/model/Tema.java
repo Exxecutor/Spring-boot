@@ -1,5 +1,10 @@
-package src.main.java.com.blogpessoal.model;
+package com.blogpessoal.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class Tema {
 	@Id

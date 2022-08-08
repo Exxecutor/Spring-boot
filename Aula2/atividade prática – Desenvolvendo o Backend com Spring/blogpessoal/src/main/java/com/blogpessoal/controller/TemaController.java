@@ -1,4 +1,4 @@
-package src.main.java.com.blogpessoal.model;
+package com.blogpessoal.controller;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,10 +19,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.blogpessoal.repository.TemaRepository;
 import com.blogpessoal.model.Tema;
-
-public class Tema {
+import com.blogpessoal.repository.TemaRepository;
 	@RestController
 	@RequestMapping("/temas")
 	@CrossOrigin(origins="*", allowedHeaders="*")
@@ -46,13 +44,13 @@ public class Tema {
 		}
 		@GetMapping("/descricao/{descricao}")
 		public ResponseEntity<List<Tema>> getByDescricao(@PathVariable String descricao){
-			return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(descricao));
+			return ResponseEntity.ok(temaRepository.findAllByTemaContainingIgnoreCase(descricao));
 		}
 		@PutMapping
 		public ResponseEntity<Tema> put(@Valid @RequestBody Tema tema){
 			return temaRepository.findById(tema.getId())
 					.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-					.body(temaRepository.save(categoria))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+					.body(temaRepository.save(tema))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 		}
 		@ResponseStatus(HttpStatus.NO_CONTENT)
 		@DeleteMapping("/{id}")
@@ -64,4 +62,3 @@ public class Tema {
 	}
 	}
 
-}

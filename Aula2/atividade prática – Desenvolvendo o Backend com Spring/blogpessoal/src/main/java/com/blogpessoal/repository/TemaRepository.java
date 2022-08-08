@@ -1,4 +1,4 @@
-package src.main.java.com.blogpessoal.repository;
+package com.blogpessoal.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
