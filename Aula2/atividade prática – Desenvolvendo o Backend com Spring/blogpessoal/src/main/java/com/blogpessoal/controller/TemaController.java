@@ -44,7 +44,7 @@ import com.blogpessoal.repository.TemaRepository;
 		}
 		@GetMapping("/descricao/{descricao}")
 		public ResponseEntity<List<Tema>> getByDescricao(@PathVariable String descricao){
-			return ResponseEntity.ok(temaRepository.findAllByTemaContainingIgnoreCase(descricao));
+			return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(descricao));
 		}
 		@PutMapping
 		public ResponseEntity<Tema> put(@Valid @RequestBody Tema tema){
